@@ -13,11 +13,11 @@
 
         <!-- Styles -->
         <link href="/css/app.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/styles.css') }}">
 
-        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
-        <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+        <link rel="shortcut icon" href="{{ asset('public/favicon.ico') }}" type="image/x-icon">
+        <link rel="icon" href="{{ asset('public/favicon.ico') }}" type="image/x-icon">
 
         <!-- Scripts -->
         <script>
@@ -49,18 +49,23 @@
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
-                            @if (!Auth::guest())
+                            @if (Auth::guest())
                                 <li><a href="{{ url('/login') }}">Login</a></li>
                                 <li><a href="{{ url('/register') }}">Cadastro</a></li>
                             @else
-                                <!-- <li>
-                                    <a href="javascript:;">
-                                        <span class="label label-danger cursorD">Indisponível</span>
-                                    </a>
-                                </li> -->
+                                @if (Auth::user()->tipo == App\Source\Usuario\Tipo::MOTOBOY)
+                                    <li>
+                                        <a href="javascript:;">
+                                            <span class="label label-danger cursorD">
+                                                {{ Auth::user()->tipo()->nome }}
+                                            </span>
+                                        </a>
+                                    </li>
+                                @endif
+
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                        Douglas Oliveira <span class="caret"></span>
+                                        Auth::user()->name <span class="caret"></span>
                                     </a>
 
                                     <ul class="dropdown-menu" role="menu">
@@ -86,8 +91,8 @@
             @yield('content')
         </div>
 
-        <script src="{{ asset('js/app.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('public/js/app.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('public/js/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('public/js/bootstrap.min.js') }}"></script>
     </body>
 </html>
