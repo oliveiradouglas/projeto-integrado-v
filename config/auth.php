@@ -67,13 +67,13 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Models\Usuario::class,
         ],
 
-        'users' => [
-            'driver' => 'database',
-            'table' => 'usuario',
-        ],
+        // 'users' => [
+        //     'driver' => 'database',
+        //     'table' => 'usuario',
+        // ],
     ],
 
     /*

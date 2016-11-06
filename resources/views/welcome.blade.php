@@ -9,11 +9,11 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/bootstrap.min.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/styles.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
 
-        <link rel="shortcut icon" href="{{ asset('public/favicon.ico') }}" type="image/x-icon">
-        <link rel="icon" href="{{ asset('public/favicon.ico') }}" type="image/x-icon">
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+        <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -26,7 +26,7 @@
 
             <div class="content">
                 <h1>
-                    <img src="{{ asset('public/img/logo-sem-nome.png') }}" title="Easy Moto" alt="Easy Moto" id="logo" />
+                    <img src="{{ asset('img/logo-sem-nome.png') }}" title="Easy Moto" alt="Easy Moto" id="logo" />
                 </h1>
                 <div class="title m-b-md">
                     {{ config('app.name', 'Easy Moto') }}
@@ -43,7 +43,7 @@
             </div>
         </div>
 
-        <script type="text/javascript" src="{{ asset('public/js/jquery.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('public/js/bootstrap.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
     </body>
 </html>

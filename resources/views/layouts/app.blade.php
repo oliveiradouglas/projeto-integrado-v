@@ -13,11 +13,11 @@
 
         <!-- Styles -->
         <link href="/css/app.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/bootstrap.min.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/styles.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
 
-        <link rel="shortcut icon" href="{{ asset('public/favicon.ico') }}" type="image/x-icon">
-        <link rel="icon" href="{{ asset('public/favicon.ico') }}" type="image/x-icon">
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+        <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
 
         <!-- Scripts -->
         <script>
@@ -25,6 +25,8 @@
                 'csrfToken' => csrf_token(),
             ]); ?>
         </script>
+
+        <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
     </head>
     <body>
         <div id="app">
@@ -49,11 +51,11 @@
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
-                            @if (Auth::guest())
+                            @if (\Auth::guest())
                                 <li><a href="{{ url('/login') }}">Login</a></li>
                                 <li><a href="{{ url('/register') }}">Cadastro</a></li>
                             @else
-                                @if (Auth::user()->tipo == App\Source\Usuario\Tipo::MOTOBOY)
+                                @if (\Auth::user()->tipo == App\Source\Usuario\Tipo::MOTOBOY)
                                     <li>
                                         <a href="javascript:;">
                                             <span class="label label-danger cursorD">
@@ -63,24 +65,22 @@
                                     </li>
                                 @endif
 
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                        Auth::user()->name <span class="caret"></span>
+                                <li>
+                                    <a href="javascript:;">
+                                        Olá {{ \Auth::user()->nome }}
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="{{ url('/logout') }}"
+                                        onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                        Logout
                                     </a>
 
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li>
-                                            <a href="{{ url('/logout') }}"
-                                                onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
-                                                Logout
-                                            </a>
-
-                                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                                {{ csrf_field() }}
-                                            </form>
-                                        </li>
-                                    </ul>
+                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
                                 </li>
                             @endif
                         </ul>
@@ -91,8 +91,7 @@
             @yield('content')
         </div>
 
-        <script src="{{ asset('public/js/app.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('public/js/jquery.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('public/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/app.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
     </body>
 </html>

@@ -21,8 +21,13 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('home');
+    public function index() {
+        if (\Auth::user()->tipo == \App\Source\Usuario\Tipo::CLIENTE) {
+            return view('home.cliente');
+        } elseif (\Auth::user()->tipo == \App\Source\Usuario\Tipo::MOTOBOY) {
+            return view('home.motoboy');
+        } else {
+            abort(404);
+        }
     }
 }

@@ -5,16 +5,22 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Cadastro</div>
+                <div class="panel-heading">Cadastro de usuário</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group">
+                        <div class="form-group{{ $errors->has('tipo') ? ' has-error' : '' }}">
                             <label for="tipo" class="col-md-4 control-label">Tipo de cadastro</label>
                             <div class="col-md-6">
                                 <input type="radio" name="tipo" value="1" required checked /> Cliente
                                 <input type="radio" name="tipo" value="2" required /> Motoboy
+
+                                @if ($errors->has('tipo'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('tipo') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -78,7 +84,7 @@
                             <label for="confirmacao-senha" class="col-md-4 control-label">Confirmação de senha</label>
 
                             <div class="col-md-6">
-                                <input id="confirmacao-senha" type="password" class="form-control" name="confirmacao_senha" required>
+                                <input id="confirmacao-senha" type="password" class="form-control" name="senha_confirmation" required>
                             </div>
                         </div>
 
@@ -95,4 +101,9 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript" src="{{ asset('js/jquery.maskedinput.min.js') }}"></script>
+<script type="text/javascript">
+    $('#cpf').mask('999.999.999-99');
+</script>
 @endsection

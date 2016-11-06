@@ -41,7 +41,7 @@ return [
     'file'                 => 'O campo :attribute deve ser um arquivo.',
     'filled'               => 'O campo :attribute  é obrigatório.',
     'image'                => 'O campo :attribute deve ser uma imagem.',
-    'in'                   => 'O campo valor selecionado em :attribute é inválido.',
+    'in'                   => 'O valor selecionado no campo :attribute é inválido.',
     'in_array'             => 'O campo :attribute não exéte no :other.',
     'integer'              => 'O campo :attribute deve ser um número inteiro.',
     'ip'                   => 'O campo :attribute deve ser um endereço de IP válido.',
