@@ -19,4 +19,12 @@ class Usuario extends Authenticatable
     protected $fillable = [
         'nome', 'email', 'senha', 'cpf', 'tipo',
     ];
+
+    public function getMotoboy() {
+        return Motoboy::where('id_usuario', $this->id)->first();
+    }
+
+    public function getCliente() {
+        return Cliente::where('id_usuario', $this->id)->first();
+    }
 }

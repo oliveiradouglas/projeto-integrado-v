@@ -12,16 +12,10 @@
 */
 
 Route::group(['middleware' => ['auth']], function(){
-	Route::get('/home-cliente', function () {
-	    return view('home/cliente');
-	});
+	Route::get('/servicos', 'ServicoController@index');
 
 	Route::get('/visualizar-servico/3', function () {
 	    return view('servico/visualizar');
-	});
-
-	Route::get('/home-motoboy', function () {
-	    return view('home/motoboy');
 	});
 
 	Route::get('/cartoes', function () {
@@ -39,10 +33,11 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::get('/', function () {
 	    return view('welcome');
 	});
-
-	Route::get('/home', 'HomeController@index');
 });
 
+Route::get('home', function(){
+	return redirect('/servicos');
+});
 
 Auth::routes();
 

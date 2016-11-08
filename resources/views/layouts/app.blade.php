@@ -58,16 +58,14 @@
                                 @if (\Auth::user()->tipo == App\Source\Usuario\Tipo::MOTOBOY)
                                     <li>
                                         <a href="javascript:;">
-                                            <span class="label label-danger cursorD">
-                                                {{ Auth::user()->tipo()->nome }}
-                                            </span>
+                                            {!! Auth::user()->getMotoboy()->getStatus()->getLabel() !!}
                                         </a>
                                     </li>
                                 @endif
 
                                 <li>
                                     <a href="javascript:;">
-                                        Olá {{ \Auth::user()->nome }}
+                                        {{ \Auth::user()->nome }}
                                     </a>
                                 </li>
 
