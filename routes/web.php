@@ -11,9 +11,6 @@
 |
 */
 
-
-
-
 Route::group(['middleware' => ['web']], function(){
 	Route::get('/servicos', 'ServicoController@index');
 
@@ -21,19 +18,11 @@ Route::group(['middleware' => ['web']], function(){
 	    return view('servico/visualizar');
 	});
 
-	Route::get('/cartoes', function () {
-	    return view('cartao/index');
-	});
-
-	Route::get('/cartao/adicionar', function () {
-	    return view('cartao/adicionar');
-	});
+	// apenas cliente
+	Route::get('/cartoes', 'CartaoController@index');
+	Route::get('/cartao/adicionar', 'CartaoController@telaAdicionar');
 
 	Route::get('/servico/adicionar', 'ServicoController@telaAdicionar');
-
-	Route::get('/', function(){
-		return redirect('/servicos');
-	});
 });
 
 Route::get('/', function () {

@@ -10,7 +10,7 @@
                     Novo serviço
                 </a>
 
-                <a href="#" class="btn btn-primary marginL10"> 
+                <a href="{{ action('CartaoController@index') }}" class="btn btn-primary marginL10"> 
                     <span class="glyphicon glyphicon-credit-card"></span>
                     Cartões
                 </a>
