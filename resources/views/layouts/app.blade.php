@@ -65,6 +65,7 @@
 
                                 <li>
                                     <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-user"></span>
                                         {{ \Auth::user()->nome }}
                                     </a>
                                 </li>
@@ -73,6 +74,7 @@
                                     <a href="{{ url('/logout') }}"
                                         onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
+                                        <span class="glyphicon glyphicon-log-out"></span>
                                         Logout
                                     </a>
 

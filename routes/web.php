@@ -11,7 +11,10 @@
 |
 */
 
-Route::group(['middleware' => ['auth']], function(){
+
+
+
+Route::group(['middleware' => ['web']], function(){
 	Route::get('/servicos', 'ServicoController@index');
 
 	Route::get('/visualizar-servico/3', function () {
@@ -26,18 +29,15 @@ Route::group(['middleware' => ['auth']], function(){
 	    return view('cartao/adicionar');
 	});
 
-	Route::get('/servico/adicionar', function () {
-	    return view('servico/adicionar');
-	});
+	Route::get('/servico/adicionar', 'ServicoController@telaAdicionar');
 
-	Route::get('/', function () {
-	    return view('welcome');
+	Route::get('/', function(){
+		return redirect('/servicos');
 	});
 });
 
-Route::get('home', function(){
-	return redirect('/servicos');
+Route::get('/', function () {
+    return view('home');
 });
 
 Auth::routes();
-

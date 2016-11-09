@@ -2,6 +2,21 @@
 
 @section('content')
 <div class="container">
+    @if (\Auth::user()->tipo == \App\Source\Usuario\Tipo::CLIENTE)
+        <div class="form-row row">
+            <div class="col-md-8 col-md-offset-2">
+                <a href="{{ action('ServicoController@telaAdicionar') }}" class="btn btn-success"> 
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Novo serviço
+                </a>
+
+                <a href="#" class="btn btn-primary marginL10"> 
+                    <span class="glyphicon glyphicon-credit-card"></span>
+                    Cartões
+                </a>
+            </div>
+        </div>
+    @endif
 
     <div class="form-row row">
         <div class="col-md-8 col-md-offset-2">
@@ -34,16 +49,24 @@
                                             <span class="glyphicon glyphicon-eye-open"></span>
                                         </a>
 
-                                        @if ($servico->getStatus()->getId() == \App\Source\Servico\Status::EM_ANDAMENTO)
+                                        @if(\Auth::user()->tipo == \App\Source\Usuario\Tipo::MOTOBOY 
+                                        && $servico->getStatus()->getId() == \App\Source\Servico\Status::EM_ANDAMENTO)
                                             <a href="{{ action('ServicController@finalizarServico') }}" class="btn btn-sm btn-success" title="Finalizar serviço">
                                                 <span class="glyphicon glyphicon-ok"></span>
                                             </a>
+                                        @elseif (\Auth::user()->tipo == \App\Source\Usuario\Tipo::CLIENTE 
+                                            && $servico->getStatus()->getId() == \App\Source\Servico\Status::FINALIZADO 
+                                            && !$servico->avaliado)
+                                            
+                                            <button type="button" class="btn btn-sm btn-primary" title="Avaliar motoboy" data-toggle="modal" data-target="#modal-avaliacao">
+                                                <span class='glyphicon glyphicon-star'></span>
+                                            </button>
                                         @endif
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="5">
+                                    <td colspan="5" class="text-center">
                                         Nenhum registro encontrado!
                                     </td>
                                 </tr>
@@ -55,4 +78,7 @@
         </div>
     </div>
 </div>
+
+@include('servico.modal-avaliacao')
+
 @endsection

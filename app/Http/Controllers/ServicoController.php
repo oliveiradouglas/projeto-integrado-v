@@ -17,7 +17,11 @@ class ServicoController extends Controller {
 
         $metodoTipoUsuario = 'get' . ucfirst($identificacao);
 
-        return view("servico.index.{$identificacao}")
+        return view("servico.index")
         	->with('servicos', Servico::where("id_{$identificacao}", \Auth::user()->$metodoTipoUsuario()->id)->get());
+    }
+
+    public function telaAdicionar() {
+        return view('servico.adicionar');
     }
 }
