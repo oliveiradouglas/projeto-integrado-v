@@ -22,7 +22,7 @@
                             <label for="nome" class="col-md-4 control-label">Nome impresso</label>
 
                             <div class="col-md-6">
-                                <input id="nome" type="text" class="form-control" name="nome" required />
+                                <input id="nome" type="text" class="form-control" name="nome" style="text-transform: uppercase;" required />
                             </div>
                         </div>
 
@@ -75,20 +75,31 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-success">
-                                    Cadastrar
-                                </button>
                                 <a href="#" class="btn btn-danger">
                                     Cancelar
                                 </a>
+                                <button type="submit" class="btn btn-success">
+                                    Cadastrar
+                                </button>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
-
-            <a href="#" class="pull-right">Voltar</a>
         </div>
     </div>
 </div>
+
+<script type="text/javascript" src="{{ asset('js/jquery.maskedinput.min.js') }}"></script>
+<script type="text/javascript">
+    $('#numero').mask(
+        '9999 9999 9999 9?999', 
+        {placeholder: ''}
+    );
+
+    $('#cvv').mask(
+        '999',
+        {placeholder: ''}
+    );
+</script>
 @endsection

@@ -21,6 +21,8 @@ Route::group(['middleware' => ['web']], function(){
 	// apenas cliente
 	Route::get('/cartoes', 'CartaoController@index');
 	Route::get('/cartao/adicionar', 'CartaoController@telaAdicionar');
+	Route::post('/cartao/adicionar', 'CartaoController@adicionar');
+	Route::get('/cartao/excluir/{id}', 'CartaoController@excluir');
 
 	Route::get('/servico/adicionar', 'ServicoController@telaAdicionar');
 });

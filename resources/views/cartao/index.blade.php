@@ -46,7 +46,7 @@
                                         <a href="#" class="btn btn-sm btn-default" title="Editar cartão">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </a>
-                                        <a href="#" class="btn btn-sm btn-danger" title="Excluir cartão">
+                                        <a href="{{ action('CartaoController@excluir', $cartao->id) }}" class="btn btn-sm btn-danger" title="Excluir cartão">
                                             <span class="glyphicon glyphicon-remove"></span>
                                         </a>
                                     </td>
