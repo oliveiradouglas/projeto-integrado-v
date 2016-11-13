@@ -7,14 +7,14 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Cadastrar cartão</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/cartao/adicionar') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ $action }}">
                         {{ csrf_field() }}
 
                         <div class="form-group">
                             <label for="numero" class="col-md-4 control-label">Número</label>
 
                             <div class="col-md-6">
-                                <input id="numero" type="text" class="form-control" name="numero" required />
+                                <input id="numero" type="text" class="form-control" name="numero" value="{{ $cartao->numero or '' }}" required />
                             </div>
                         </div>
                         
@@ -22,7 +22,7 @@
                             <label for="nome" class="col-md-4 control-label">Nome impresso</label>
 
                             <div class="col-md-6">
-                                <input id="nome" type="text" class="form-control" name="nome" style="text-transform: uppercase;" required />
+                                <input id="nome" type="text" class="form-control" name="nome" value="{{ $cartao->nome or '' }}" style="text-transform: uppercase;" required />
                             </div>
                         </div>
 
@@ -69,17 +69,17 @@
                             <label for="cvv" class="col-md-4 control-label">CVV</label>
 
                             <div class="col-md-6">
-                                <input id="cvv" type="text" class="form-control" name="cvv" required />
+                                <input id="cvv" type="text" class="form-control" name="cvv" value="{{ $cartao->cvv or '' }}" required />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <a href="#" class="btn btn-danger">
+                                <a href="{{ action('CartaoController@index') }}" class="btn btn-danger">
                                     Cancelar
                                 </a>
                                 <button type="submit" class="btn btn-success">
-                                    Cadastrar
+                                    Salvar
                                 </button>
                             </div>
                         </div>
@@ -101,5 +101,11 @@
         '999',
         {placeholder: ''}
     );
+
+    @if (isset($cartao)) 
+        $('#bandeira').val('{{ $cartao->bandeira }}');
+        $('#mes').val('{{ $cartao->mes }}');
+        $('#ano').val('{{ $cartao->ano }}');
+    @endif
 </script>
 @endsection

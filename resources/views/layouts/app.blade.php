@@ -58,7 +58,7 @@
                                 @if (\Auth::user()->tipo == App\Source\Usuario\Tipo::MOTOBOY)
                                     <li>
                                         <a href="javascript:;">
-                                            {!! Auth::user()->getMotoboy()->getStatus()->getLabel() !!}
+                                            {!! Auth::user()->getInstanciaTipo()->getStatus()->getLabel() !!}
                                         </a>
                                     </li>
                                 @endif

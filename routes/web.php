@@ -22,9 +22,15 @@ Route::group(['middleware' => ['web']], function(){
 	Route::get('/cartoes', 'CartaoController@index');
 	Route::get('/cartao/adicionar', 'CartaoController@telaAdicionar');
 	Route::post('/cartao/adicionar', 'CartaoController@adicionar');
+	Route::get('/cartao/editar/{id}', 'CartaoController@telaEditar');
+	Route::post('/cartao/editar/{id}', 'CartaoController@editar');
 	Route::get('/cartao/excluir/{id}', 'CartaoController@excluir');
 
+	Route::get('/motoboy/selecionar-disponivel', 'MotoboyController@selecionarMotoboyDisponivel');
+
 	Route::get('/servico/adicionar', 'ServicoController@telaAdicionar');
+	Route::post('/servico/adicionar', 'ServicoController@adicionar');
+	Route::get('/servico/visualizar/{id}', 'ServicoController@show');
 });
 
 Route::get('/', function () {

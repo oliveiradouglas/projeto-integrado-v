@@ -55,6 +55,7 @@ html, body {
 
 .descricao {
     color: #000;
+    font-weight: bold;
 }
 
 .form-row {

@@ -40,9 +40,9 @@
                                 <tr class="text-center">
                                     <td>{{ $chave + 1 }}</td>
                                     <td>{{ $servico->created_at }}</td>
-                                    <td>{{ $servico->preco }}</td>
+                                    <td>R$ {{ $servico->preco }}</td>
                                     <td>
-                                        {{ $servico->getStatus()->getLabel() }}
+                                        {!! $servico->getStatus()->getLabel() !!}
                                     </td>
                                     <td>
                                         <a href="{{ action('ServicoController@show', ['id' => $servico->id]) }}" class="btn btn-sm btn-default" title="Visualizar serviço">

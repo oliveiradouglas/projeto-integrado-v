@@ -2,12 +2,9 @@
 
 namespace App\Source\Usuario;
 
-class Tipo {
+class Tipo extends \App\Source\Enum\Enum {
 	const CLIENTE = 1;
 	const MOTOBOY = 2;
-
-	private $id;
-	private $nome;
 
 	public function __construct($tipo) {
 		$this->id = $tipo;
@@ -23,12 +20,4 @@ class Tipo {
 				throw new \DomainException('O tipo informado não existe!');
 		}
 	}
-
-    public function getId() {
-        return $this->id;
-    }
-
-    public function getNome() {
-        return $this->nome;
-    }
 }

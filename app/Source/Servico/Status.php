@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Source\Motoboy;
+namespace App\Source\Servico;
 
 class Status extends \App\Source\Enum\Enum {
-	const DISPONIVEL   = 1;
-	const INDISPONIVEL = 2;
+	const EM_ANDAMENTO = 1;
+	const FINALIZADO   = 2;
 
 	private $label;
 
@@ -12,13 +12,13 @@ class Status extends \App\Source\Enum\Enum {
 		$this->id = $tipo;
 
 		switch ($tipo) {
-			case self::DISPONIVEL:
-				$this->nome = 'Disponível';
-				$tipoLabel  = 'success';
+			case self::EM_ANDAMENTO:
+				$this->nome = 'Em andamento';
+				$tipoLabel  = 'warning';
 				break;
-			case self::INDISPONIVEL:
-				$this->nome = 'Indisponível';
-				$tipoLabel  = 'danger';
+			case self::FINALIZADO:
+				$this->nome = 'Finalizado';
+				$tipoLabel  = 'success';
 				break;
 			default:
 				throw new \DomainException('O status informado não existe!');

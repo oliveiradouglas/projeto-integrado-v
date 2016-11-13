@@ -16,4 +16,14 @@ class Cartao extends Model {
     public function setNomeAttribute($nome) {
     	$this->attributes['nome'] = strtoupper($nome);
     }
+
+    public function getFinalCartao() {
+        return substr($this->numero, -4);
+    }
+
+    public static function buscarCartao($id) {
+		return Cartao::where('id_cliente', \Auth::user()->getInstanciaTipo()->id)
+    			->where('id', $id)
+    			->firstOrFail();
+    }
 }

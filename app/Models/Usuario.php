@@ -20,11 +20,19 @@ class Usuario extends Authenticatable
         'nome', 'email', 'senha', 'cpf', 'tipo',
     ];
 
-    public function getMotoboy() {
-        return Motoboy::where('id_usuario', $this->id)->first();
+    public function getInstanciaTipo() {
+        $tipo = "\\App\\Models\\";
+        
+        if ($this->tipo == \App\Source\Usuario\Tipo::CLIENTE) {
+            $tipo .='Cliente';
+        } else {
+            $tipo .= 'Motoboy';
+        }
+
+        return $tipo::where('id_usuario', $this->id)->first();
     }
 
-    public function getCliente() {
-        return Cliente::where('id_usuario', $this->id)->first();
+    public function getIdentificacaoTipo() {
+        return strtolower((new \App\Source\Usuario\Tipo($this->tipo))->getNome());
     }
 }
