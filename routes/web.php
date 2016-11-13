@@ -12,13 +12,6 @@
 */
 
 Route::group(['middleware' => ['web']], function(){
-	Route::get('/servicos', 'ServicoController@index');
-
-	Route::get('/visualizar-servico/3', function () {
-	    return view('servico/visualizar');
-	});
-
-	// apenas cliente
 	Route::get('/cartoes', 'CartaoController@index');
 	Route::get('/cartao/adicionar', 'CartaoController@telaAdicionar');
 	Route::post('/cartao/adicionar', 'CartaoController@adicionar');
@@ -26,11 +19,14 @@ Route::group(['middleware' => ['web']], function(){
 	Route::post('/cartao/editar/{id}', 'CartaoController@editar');
 	Route::get('/cartao/excluir/{id}', 'CartaoController@excluir');
 
-	Route::get('/motoboy/selecionar-disponivel', 'MotoboyController@selecionarMotoboyDisponivel');
+	Route::get('/motoboy/selecionar-disponivel', 'MotoboyController@buscarMotoboyDisponivel');
+	Route::post('/motoboy/avaliar', 'MotoboyController@avaliarMotoboy');
 
+	Route::get('/servicos', 'ServicoController@index');
 	Route::get('/servico/adicionar', 'ServicoController@telaAdicionar');
 	Route::post('/servico/adicionar', 'ServicoController@adicionar');
 	Route::get('/servico/visualizar/{id}', 'ServicoController@show');
+	Route::get('/servico/finalizar/{id}', 'ServicoController@finalizarServico');
 });
 
 Route::get('/', function () {

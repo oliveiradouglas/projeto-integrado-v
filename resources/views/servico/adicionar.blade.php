@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<link rel="stylesheet" type="text/css" href="{{ asset('/css/sweetalert.css') }}" />
-
 <div class="container">
     <div class="form-row row">
         <div class="col-md-8 col-md-offset-2">
@@ -21,14 +19,7 @@
                     <form class="form-horizontal" id="formulario" role="form" method="POST" action="{{ url('/servico/adicionar') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group">
-                            <label for="id_motoboy" class="col-md-4 control-label">Motoboy</label>
-
-                            <div class="col-md-6">
-                                <input id="nome_motoboy" type="text" class="form-control" disabled />
-                                <input id="id_motoboy" type="hidden" name="id_motoboy" required />
-                            </div>
-                        </div>
+                        <input id="id_motoboy" type="hidden" name="id_motoboy" required />
                         
                         <div class="form-group">
                             <label for="endereco_origem" class="col-md-4 control-label">Endereço de origem</label>
@@ -69,7 +60,10 @@
                                 @forelse ($cartoes as $indice => $cartao)
                                     <input type="radio" name="id_cartao" value="{{ $cartao->id }}" required {{ $indice == 0 ? 'checked' : ''}} /> Final: {{ $cartao->getFinalCartao() }}, Bandeira: {{ $cartao->bandeira }} <br />
                                 @empty
-                                    Nenhum cartão cadastrado!
+                                    <span style="font-weight: 500;">
+                                        Nenhum cartão cadastrado! Para cadastrar clique 
+                                        <a href="{{ action('CartaoController@telaAdicionar') }}" style="cursor: pointer;"> aqui</a>.
+                                    </span>
                                 @endforelse
                             </div>
                         </div>
@@ -91,7 +85,6 @@
     </div>
 </div>
 
-<script src="{{ asset('/js/sweetalert.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/js/number_format.js') }}" type="text/javascript"></script>
 <script src="http://maps.google.com/maps/api/js?key=AIzaSyDgKvor_-I01kUNPwAXNgiu-wKhB7reFbU"></script>
 <script type="text/javascript">
@@ -137,12 +130,23 @@
     }
 
     $('#formulario').submit(function(e){
+        if ($('[name="id_cartao"]:checked').length == 0) {
+            swal({
+                title: '',
+                text: 'Você precisa selecionar um cartão para realizar o pagamento!',
+                type: 'error',
+                showConfirmButton: true
+            });
+
+            return false;
+        }
+
         if ($('#id_motoboy').val()) {
             return true;
         }
 
         $.ajax({
-            url: "{{ action('MotoboyController@selecionarMotoboyDisponivel') }}",
+            url: "{{ action('MotoboyController@buscarMotoboyDisponivel') }}",
             type: 'GET',
             dataType: 'json',
             beforeSend: function() {
@@ -163,9 +167,7 @@
                     return false;
                 }
 
-                $('#id_motoboy').val(motoboy.id);
-                $('#nome_motoboy').val(motoboy.nome);
-                
+                $('#id_motoboy').val(motoboy.id);                
                 swal({
                     title: 'Motoboy selecionado: ' + motoboy.nome,
                     type: 'success',

@@ -13,7 +13,8 @@ class CartaoController extends Controller {
 
     public function telaAdicionar() {
     	return view('cartao.formulario')
-            ->with('action', action('CartaoController@adicionar'));
+            ->with('action', action('CartaoController@adicionar'))
+            ->with('breadcrumb', 'Adicionar');
     }
 
     public function adicionar(Request $request) {
@@ -38,9 +39,9 @@ class CartaoController extends Controller {
         try {
             return view('cartao.formulario')
                 ->with('cartao', Cartao::buscarCartao($id))
-                ->with('action', action('CartaoController@editar', $id));
+                ->with('action', action('CartaoController@editar', $id))
+                ->with('breadcrumb', 'Editar');
         } catch (Exception $e) {
-            echo "string";exit();
             \Alerta::exibir('Cartão não encontrado!', 'error');
             return redirect(
                 action('CartaoController@index')

@@ -49,17 +49,28 @@ class ServicoController extends Controller {
     public function show($id) {
         try {
             return view('servico.visualizar')
-                ->with(
-                    'servico', 
-                    Servico::where('id_' . \Auth::user()->getIdentificacaoTipo(),\Auth::user()->getInstanciaTipo()->id)
-                    ->where('id', $id)
-                    ->firstOrFail()
-                );
+                ->with('servico', Servico::buscarPorId($id));
         } catch (Exception $e) {
             \Alerta::exibir('Serviço não encontrado!', 'error');
             return redirect(
                 action('ServicoController@index')
             );
         }
-    }    
+    }
+
+    public function finalizarServico($id) {
+        try {
+            Servico::buscarPorId($id)->update([
+                'status' => \App\Source\Servico\Status::FINALIZADO
+            ]);
+            
+            \Alerta::exibir('Serviço finalizado com sucesso!', 'success');
+        } catch (Exception $e) {
+            \Alerta::exibir('Erro ao finalizar o serviço!', 'error');
+        }
+
+        return redirect(
+            action('ServicoController@index')
+        );        
+    }
 }

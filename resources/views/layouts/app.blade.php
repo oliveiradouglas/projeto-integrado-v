@@ -14,6 +14,7 @@
         <!-- Styles -->
         <link href="/css/app.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('/css/sweetalert.css') }}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
 
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
@@ -106,5 +107,6 @@
 
         <script src="{{ asset('js/app.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('/js/sweetalert.min.js') }}" type="text/javascript"></script>
     </body>
 </html>

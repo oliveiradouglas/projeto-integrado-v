@@ -2,6 +2,14 @@
 
 @section('content')
 <div class="container">
+    <div class="form-row row">
+        <div class="col-md-8 col-md-offset-2">
+            <ol class="breadcrumb">
+                <li class="active">Serviços</li>
+            </ol>
+        </div>
+    </div>
+
     @if (\Auth::user()->tipo == \App\Source\Usuario\Tipo::CLIENTE)
         <div class="form-row row">
             <div class="col-md-8 col-md-offset-2">
@@ -51,14 +59,14 @@
 
                                         @if(\Auth::user()->tipo == \App\Source\Usuario\Tipo::MOTOBOY 
                                         && $servico->getStatus()->getId() == \App\Source\Servico\Status::EM_ANDAMENTO)
-                                            <a href="{{ action('ServicController@finalizarServico') }}" class="btn btn-sm btn-success" title="Finalizar serviço">
+                                            <a href="{{ action('ServicoController@finalizarServico', $servico->id) }}" class="btn btn-sm btn-success" title="Finalizar serviço">
                                                 <span class="glyphicon glyphicon-ok"></span>
                                             </a>
                                         @elseif (\Auth::user()->tipo == \App\Source\Usuario\Tipo::CLIENTE 
                                             && $servico->getStatus()->getId() == \App\Source\Servico\Status::FINALIZADO 
                                             && !$servico->avaliado)
                                             
-                                            <button type="button" class="btn btn-sm btn-primary" title="Avaliar motoboy" data-toggle="modal" data-target="#modal-avaliacao">
+                                            <button type="button" class="btn btn-sm btn-primary btn-avaliacao" title="Avaliar motoboy" data-id="{{ $servico->id }}">
                                                 <span class='glyphicon glyphicon-star'></span>
                                             </button>
                                         @endif
@@ -80,5 +88,12 @@
 </div>
 
 @include('servico.modal-avaliacao')
+
+<script type="text/javascript">
+    $('.btn-avaliacao').click(function(){
+        $('#modal-avaliacao').modal('show');
+        $('#servico').val($(this).attr('data-id'));
+    });
+</script>
 
 @endsection

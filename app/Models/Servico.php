@@ -34,4 +34,10 @@ class Servico extends Model {
     public function getCliente() {
     	return Cliente::find($this->id_cliente);
     }
+
+    public static function buscarPorId($id) {
+    	return Servico::where('id_' . \Auth::user()->getIdentificacaoTipo(),\Auth::user()->getInstanciaTipo()->id)
+		            ->where('id', $id)
+		            ->firstOrFail();
+    }
 }
