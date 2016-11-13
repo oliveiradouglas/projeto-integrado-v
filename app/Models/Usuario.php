@@ -33,6 +33,6 @@ class Usuario extends Authenticatable
     }
 
     public function getIdentificacaoTipo() {
-        return strtolower((new \App\Source\Usuario\Tipo($this->tipo))->getNome());
+        return strtolower((new \App\Source\Usuario\Tipo($this->tipo))->getDescricao());
     }
 }

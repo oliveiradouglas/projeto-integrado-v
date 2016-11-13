@@ -13,18 +13,18 @@ class Status extends \App\Source\Enum\Enum {
 
 		switch ($tipo) {
 			case self::DISPONIVEL:
-				$this->nome = 'Disponível';
-				$tipoLabel  = 'success';
+				$this->descricao = 'Disponível';
+				$tipoLabel  	 = 'success';
 				break;
 			case self::INDISPONIVEL:
-				$this->nome = 'Indisponível';
-				$tipoLabel  = 'danger';
+				$this->descricao = 'Indisponível';
+				$tipoLabel       = 'danger';
 				break;
 			default:
 				throw new \DomainException('O status informado não existe!');
 		}
 		
-		$this->label = "<span class='label label-{$tipoLabel} cursorD'>{$this->nome}</span>";
+		$this->label = "<span class='label label-{$tipoLabel} cursorD'>{$this->descricao}</span>";
 	}
 
     public function getLabel() {

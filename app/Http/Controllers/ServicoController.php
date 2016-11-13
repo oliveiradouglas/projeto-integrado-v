@@ -12,7 +12,9 @@ class ServicoController extends Controller {
                 'servicos', 
                 Servico::where('id_' . \Auth::user()->getIdentificacaoTipo(), 
                     \Auth::user()->getInstanciaTipo()->id
-                )->get()
+                )
+                ->orderBy('id', 'desc')
+                ->get()
             );
     }
 
@@ -60,10 +62,15 @@ class ServicoController extends Controller {
 
     public function finalizarServico($id) {
         try {
-            Servico::buscarPorId($id)->update([
+            $servico = Servico::buscarPorId($id);
+            $servico->update([
                 'status' => \App\Source\Servico\Status::FINALIZADO
             ]);
             
+            $servico->getMotoboy()->update([
+                'status' => \App\Source\Motoboy\Status::DISPONIVEL
+            ]);
+
             \Alerta::exibir('Serviço finalizado com sucesso!', 'success');
         } catch (Exception $e) {
             \Alerta::exibir('Erro ao finalizar o serviço!', 'error');

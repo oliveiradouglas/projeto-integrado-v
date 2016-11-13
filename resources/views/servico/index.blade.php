@@ -44,9 +44,10 @@
                         </thead>
 
                         <tbody>
-                            @forelse ($servicos as $chave => $servico)
+                            <?php $idServico = count($servicos) ?>
+                            @forelse ($servicos as $servico)
                                 <tr class="text-center">
-                                    <td>{{ $chave + 1 }}</td>
+                                    <td>{{ $idServico-- }}</td>
                                     <td>{{ $servico->created_at }}</td>
                                     <td>R$ {{ $servico->preco }}</td>
                                     <td>

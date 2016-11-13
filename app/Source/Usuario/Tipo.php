@@ -11,10 +11,10 @@ class Tipo extends \App\Source\Enum\Enum {
 
 		switch ($tipo) {
 			case self::CLIENTE:
-				$this->nome = 'Cliente';
+				$this->descricao = 'Cliente';
 				break;
 			case self::MOTOBOY:
-				$this->nome = 'Motoboy';
+				$this->descricao = 'Motoboy';
 				break;
 			default:
 				throw new \DomainException('O tipo informado não existe!');

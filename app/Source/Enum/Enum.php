@@ -4,15 +4,15 @@ namespace App\Source\Enum;
 
 abstract class Enum {
 	protected $id;
-	protected $nome;
+	protected $descricao;
 
-	public abstract function __construct($tipo);
+	public abstract function __construct($id);
 
 	public function getId() {
         return $this->id;
     }
 
-    public function getNome() {
-        return $this->nome;
+    public function getDescricao() {
+        return $this->descricao;
     }
 }
