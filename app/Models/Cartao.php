@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Cartao extends Model {
-    protected $table = 'cartao';
+    use SoftDeletes;
 
+    protected $table = 'cartao';
     protected $fillable = ['id_cliente', 'numero', 'nome', 'bandeira', 'mes', 'ano', 'cvv'];
 
     public function setNumeroAttribute($numero) {
