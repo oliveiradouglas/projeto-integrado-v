@@ -28,8 +28,6 @@
                                 <th>Número</th>
                                 <th>Nome impresso</th>
                                 <th>Bandeira</th>
-                                <th>Vencimento</th>
-                                <th>CVV</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
@@ -40,8 +38,6 @@
                                     <td> *******{{ $cartao->getFinalCartao() }}</td>
                                     <td>{{ $cartao->nome }}</td>
                                     <td>{{ $cartao->bandeira }}</td>
-                                    <td>{{ $cartao->mes }}/{{ $cartao->ano }}</td>
-                                    <td>{{ $cartao->cvv }}</td>
                                     <td>
                                         <a href="{{ action('CartaoController@editar', $cartao->id) }}" class="btn btn-sm btn-default" title="Editar cartão">
                                             <span class="glyphicon glyphicon-pencil"></span>
@@ -53,14 +49,13 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="6" class="text-center">
+                                    <td colspan="4" class="text-center">
                                         Nenhum registro encontrado!
                                     </td>
                                 </tr>
                             @endforelse
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>
