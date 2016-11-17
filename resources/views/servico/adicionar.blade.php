@@ -70,7 +70,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <a href="#" class="btn btn-danger">
+                                <a href="{{ action('ServicoController@index') }}" class="btn btn-danger">
                                     Cancelar
                                 </a>
                                 <button type="submit" class="btn btn-success" id="btn-solicitar">
