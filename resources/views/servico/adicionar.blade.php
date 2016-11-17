@@ -25,7 +25,7 @@
                             <label for="endereco_origem" class="col-md-4 control-label">Endereço de origem</label>
 
                             <div class="col-md-6">
-                                <input id="endereco_origem" type="text" class="form-control" name="endereco_origem" required />
+                                <input id="endereco_origem" type="text" class="form-control" name="endereco_origem" placeholder="Logradouro, numero - cidade" required />
                             </div>
                         </div>
 
@@ -33,7 +33,7 @@
                             <label for="endereco_destino" class="col-md-4 control-label">Endereço de destino</label>
 
                             <div class="col-md-6">
-                                <input id="endereco_destino" type="text" class="form-control" name="endereco_destino" required />
+                                <input id="endereco_destino" type="text" class="form-control" name="endereco_destino" placeholder="Logradouro, numero - cidade" required />
                             </div>
                         </div>
 
