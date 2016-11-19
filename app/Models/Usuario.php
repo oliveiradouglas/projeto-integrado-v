@@ -20,6 +20,11 @@ class Usuario extends Authenticatable
         'nome', 'email', 'senha', 'cpf', 'tipo',
     ];
 
+    /**
+     * Retorna uma instância do tipo de usuário
+     * @return Cliente|Motoboy
+     */
+
     public function getInstanciaTipo() {
         $tipo = "\\App\\Models\\";
         
